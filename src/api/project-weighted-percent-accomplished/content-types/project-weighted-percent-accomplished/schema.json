@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "project_weighted_percent_accomplisheds",
+  "info": {
+    "singularName": "project-weighted-percent-accomplished",
+    "pluralName": "project-weighted-percent-accomplisheds",
+    "displayName": "Project - Weighted percent accomplished "
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "This_date_percentage": {
+      "type": "decimal"
+    }
+  }
+}

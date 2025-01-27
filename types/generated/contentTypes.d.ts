@@ -369,6 +369,106 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiProjectWeightedPercentAccomplishedProjectWeightedPercentAccomplished
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'project_weighted_percent_accomplisheds';
+  info: {
+    displayName: 'Project - Weighted percent accomplished ';
+    pluralName: 'project-weighted-percent-accomplisheds';
+    singularName: 'project-weighted-percent-accomplished';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::project-weighted-percent-accomplished.project-weighted-percent-accomplished'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    This_date_percentage: Schema.Attribute.Decimal;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiProjectWorkAccomplishedProjectWorkAccomplished
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'project_work_accomplisheds';
+  info: {
+    description: '';
+    displayName: 'Project - Work Accomplished ';
+    pluralName: 'project-work-accomplisheds';
+    singularName: 'project-work-accomplished';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    amount: Schema.Attribute.Decimal;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::project-work-accomplished.project-work-accomplished'
+    > &
+      Schema.Attribute.Private;
+    project: Schema.Attribute.Relation<'oneToOne', 'api::project.project'>;
+    publishedAt: Schema.Attribute.DateTime;
+    quantity: Schema.Attribute.Decimal;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiProjectProject extends Struct.CollectionTypeSchema {
+  collectionName: 'projects';
+  info: {
+    description: '';
+    displayName: 'project';
+    pluralName: 'projects';
+    singularName: 'project';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    amount: Schema.Attribute.Decimal;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description_: Schema.Attribute.Text;
+    itemNumber: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::project.project'
+    > &
+      Schema.Attribute.Private;
+    project_work_accomplisheds: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::project-work-accomplished.project-work-accomplished'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    quantity: Schema.Attribute.BigInteger;
+    unit: Schema.Attribute.String;
+    unit_cost: Schema.Attribute.Decimal;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    wt_percent: Schema.Attribute.Decimal;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -878,6 +978,9 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::project-weighted-percent-accomplished.project-weighted-percent-accomplished': ApiProjectWeightedPercentAccomplishedProjectWeightedPercentAccomplished;
+      'api::project-work-accomplished.project-work-accomplished': ApiProjectWorkAccomplishedProjectWorkAccomplished;
+      'api::project.project': ApiProjectProject;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

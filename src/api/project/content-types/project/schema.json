@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "projects",
+  "info": {
+    "singularName": "project",
+    "pluralName": "projects",
+    "displayName": "project",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "itemNumber": {
+      "type": "string"
+    },
+    "description_": {
+      "type": "text"
+    },
+    "quantity": {
+      "type": "biginteger"
+    },
+    "unit": {
+      "type": "string"
+    },
+    "unit_cost": {
+      "type": "decimal"
+    },
+    "amount": {
+      "type": "decimal"
+    },
+    "wt_percent": {
+      "type": "decimal"
+    },
+    "project_work_accomplisheds": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::project-work-accomplished.project-work-accomplished"
+    }
+  }
+}
