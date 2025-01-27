@@ -37,6 +37,36 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::project-work-accomplished.project-work-accomplished"
+    },
+    "startDate": {
+      "type": "date"
+    },
+    "dueDate": {
+      "type": "date"
+    },
+    "projectName": {
+      "type": "string"
+    },
+    "projectLocation": {
+      "type": "string"
+    },
+    "totalProjectAmount": {
+      "type": "decimal"
+    },
+    "projectDuration": {
+      "type": "biginteger"
+    },
+    "sourceOfFund": {
+      "type": "string"
+    },
+    "actualCompletionDate": {
+      "type": "date"
+    },
+    "header_per_project_section": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::header-per-project-section.header-per-project-section",
+      "mappedBy": "project"
     }
   }
 }

@@ -369,6 +369,37 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiHeaderPerProjectSectionHeaderPerProjectSection
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'header_per_project_sections';
+  info: {
+    displayName: 'header per project section';
+    pluralName: 'header-per-project-sections';
+    singularName: 'header-per-project-section';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    letter_label_for_item_no: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::header-per-project-section.header-per-project-section'
+    > &
+      Schema.Attribute.Private;
+    mainDescription: Schema.Attribute.String;
+    project: Schema.Attribute.Relation<'oneToOne', 'api::project.project'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiProjectWeightedPercentAccomplishedProjectWeightedPercentAccomplished
   extends Struct.CollectionTypeSchema {
   collectionName: 'project_weighted_percent_accomplisheds';
@@ -442,11 +473,17 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
+    actualCompletionDate: Schema.Attribute.Date;
     amount: Schema.Attribute.Decimal;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description_: Schema.Attribute.Text;
+    dueDate: Schema.Attribute.Date;
+    header_per_project_section: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::header-per-project-section.header-per-project-section'
+    >;
     itemNumber: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -458,8 +495,14 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::project-work-accomplished.project-work-accomplished'
     >;
+    projectDuration: Schema.Attribute.BigInteger;
+    projectLocation: Schema.Attribute.String;
+    projectName: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     quantity: Schema.Attribute.BigInteger;
+    sourceOfFund: Schema.Attribute.String;
+    startDate: Schema.Attribute.Date;
+    totalProjectAmount: Schema.Attribute.Decimal;
     unit: Schema.Attribute.String;
     unit_cost: Schema.Attribute.Decimal;
     updatedAt: Schema.Attribute.DateTime;
@@ -978,6 +1021,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::header-per-project-section.header-per-project-section': ApiHeaderPerProjectSectionHeaderPerProjectSection;
       'api::project-weighted-percent-accomplished.project-weighted-percent-accomplished': ApiProjectWeightedPercentAccomplishedProjectWeightedPercentAccomplished;
       'api::project-work-accomplished.project-work-accomplished': ApiProjectWorkAccomplishedProjectWorkAccomplished;
       'api::project.project': ApiProjectProject;

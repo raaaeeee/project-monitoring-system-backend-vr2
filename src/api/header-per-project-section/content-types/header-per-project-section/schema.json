@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "header_per_project_sections",
+  "info": {
+    "singularName": "header-per-project-section",
+    "pluralName": "header-per-project-sections",
+    "displayName": "header per project section"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "letter_label_for_item_no": {
+      "type": "string"
+    },
+    "mainDescription": {
+      "type": "string"
+    },
+    "project": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::project.project",
+      "inversedBy": "header_per_project_section"
+    }
+  }
+}
