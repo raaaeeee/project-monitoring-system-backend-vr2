@@ -4,7 +4,8 @@
   "info": {
     "singularName": "project-weighted-percent-accomplished",
     "pluralName": "project-weighted-percent-accomplisheds",
-    "displayName": "Project - Weighted percent accomplished "
+    "displayName": "Project - Weighted percent accomplished ",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -12,7 +13,14 @@
   "pluginOptions": {},
   "attributes": {
     "This_date_percentage": {
-      "type": "decimal"
+      "type": "decimal",
+      "max": 100
+    },
+    "project": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::project.project",
+      "inversedBy": "project_weighted_percent_accomplisheds"
     }
   }
 }

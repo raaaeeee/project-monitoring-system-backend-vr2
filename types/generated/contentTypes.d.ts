@@ -448,6 +448,7 @@ export interface ApiProjectWeightedPercentAccomplishedProjectWeightedPercentAcco
   extends Struct.CollectionTypeSchema {
   collectionName: 'project_weighted_percent_accomplisheds';
   info: {
+    description: '';
     displayName: 'Project - Weighted percent accomplished ';
     pluralName: 'project-weighted-percent-accomplisheds';
     singularName: 'project-weighted-percent-accomplished';
@@ -465,8 +466,15 @@ export interface ApiProjectWeightedPercentAccomplishedProjectWeightedPercentAcco
       'api::project-weighted-percent-accomplished.project-weighted-percent-accomplished'
     > &
       Schema.Attribute.Private;
+    project: Schema.Attribute.Relation<'manyToOne', 'api::project.project'>;
     publishedAt: Schema.Attribute.DateTime;
-    This_date_percentage: Schema.Attribute.Decimal;
+    This_date_percentage: Schema.Attribute.Decimal &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 100;
+        },
+        number
+      >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -532,6 +540,10 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
       'api::project.project'
     > &
       Schema.Attribute.Private;
+    project_weighted_percent_accomplisheds: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::project-weighted-percent-accomplished.project-weighted-percent-accomplished'
+    >;
     project_work_accomplisheds: Schema.Attribute.Relation<
       'oneToMany',
       'api::project-work-accomplished.project-work-accomplished'

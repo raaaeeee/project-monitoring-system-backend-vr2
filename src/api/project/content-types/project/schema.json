@@ -46,6 +46,12 @@
       "relation": "oneToOne",
       "target": "api::header-per-project-section.header-per-project-section",
       "mappedBy": "project"
+    },
+    "project_weighted_percent_accomplisheds": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::project-weighted-percent-accomplished.project-weighted-percent-accomplished",
+      "mappedBy": "project"
     }
   }
 }
