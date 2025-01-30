@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "project_items",
+  "info": {
+    "singularName": "project-item",
+    "pluralName": "project-items",
+    "displayName": "project_item",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "itemno": {
+      "type": "string"
+    },
+    "subDescription": {
+      "type": "string"
+    },
+    "quantity": {
+      "type": "decimal"
+    },
+    "unit": {
+      "type": "string"
+    },
+    "unitCost": {
+      "type": "decimal"
+    },
+    "amount": {
+      "type": "decimal"
+    },
+    "header_per_project_section": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::header-per-project-section.header-per-project-section",
+      "inversedBy": "items"
+    },
+    "wt_percent": {
+      "type": "decimal"
+    }
+  }
+}

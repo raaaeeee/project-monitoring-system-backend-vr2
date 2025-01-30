@@ -373,6 +373,7 @@ export interface ApiHeaderPerProjectSectionHeaderPerProjectSection
   extends Struct.CollectionTypeSchema {
   collectionName: 'header_per_project_sections';
   info: {
+    description: '';
     displayName: 'header per project section';
     pluralName: 'header-per-project-sections';
     singularName: 'header-per-project-section';
@@ -384,6 +385,10 @@ export interface ApiHeaderPerProjectSectionHeaderPerProjectSection
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    items: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::project-item.project-item'
+    >;
     letter_label_for_item_no: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -397,6 +402,45 @@ export interface ApiHeaderPerProjectSectionHeaderPerProjectSection
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiProjectItemProjectItem extends Struct.CollectionTypeSchema {
+  collectionName: 'project_items';
+  info: {
+    description: '';
+    displayName: 'project_item';
+    pluralName: 'project-items';
+    singularName: 'project-item';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    amount: Schema.Attribute.Decimal;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    header_per_project_section: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::header-per-project-section.header-per-project-section'
+    >;
+    itemno: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::project-item.project-item'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    quantity: Schema.Attribute.Decimal;
+    subDescription: Schema.Attribute.String;
+    unit: Schema.Attribute.String;
+    unitCost: Schema.Attribute.Decimal;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    wt_percent: Schema.Attribute.Decimal;
   };
 }
 
@@ -474,17 +518,14 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
   };
   attributes: {
     actualCompletionDate: Schema.Attribute.Date;
-    amount: Schema.Attribute.Decimal;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description_: Schema.Attribute.Text;
     dueDate: Schema.Attribute.Date;
     header_per_project_section: Schema.Attribute.Relation<
       'oneToOne',
       'api::header-per-project-section.header-per-project-section'
     >;
-    itemNumber: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -499,16 +540,12 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
     projectLocation: Schema.Attribute.String;
     projectName: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
-    quantity: Schema.Attribute.BigInteger;
     sourceOfFund: Schema.Attribute.String;
     startDate: Schema.Attribute.Date;
     totalProjectAmount: Schema.Attribute.Decimal;
-    unit: Schema.Attribute.String;
-    unit_cost: Schema.Attribute.Decimal;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    wt_percent: Schema.Attribute.Decimal;
   };
 }
 
@@ -1022,6 +1059,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::header-per-project-section.header-per-project-section': ApiHeaderPerProjectSectionHeaderPerProjectSection;
+      'api::project-item.project-item': ApiProjectItemProjectItem;
       'api::project-weighted-percent-accomplished.project-weighted-percent-accomplished': ApiProjectWeightedPercentAccomplishedProjectWeightedPercentAccomplished;
       'api::project-work-accomplished.project-work-accomplished': ApiProjectWorkAccomplishedProjectWorkAccomplished;
       'api::project.project': ApiProjectProject;
