@@ -398,10 +398,57 @@ export interface ApiHeaderPerProjectSectionHeaderPerProjectSection
       Schema.Attribute.Private;
     mainDescription: Schema.Attribute.String;
     project: Schema.Attribute.Relation<'oneToOne', 'api::project.project'>;
+    project_item_modifieds: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::project-item-modified.project-item-modified'
+    >;
+    project_with_modified_datum: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::project-with-modified-data.project-with-modified-data'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiProjectItemModifiedProjectItemModified
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'project_item_modifieds';
+  info: {
+    displayName: 'project_item_modified';
+    pluralName: 'project-item-modifieds';
+    singularName: 'project-item-modified';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    amount: Schema.Attribute.Decimal;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    header_per_project_section: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::header-per-project-section.header-per-project-section'
+    >;
+    itemno: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::project-item-modified.project-item-modified'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    quantity: Schema.Attribute.Integer;
+    subDescription: Schema.Attribute.String;
+    unit: Schema.Attribute.String;
+    unitCost: Schema.Attribute.Decimal;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    wt_percent: Schema.Attribute.Decimal;
   };
 }
 
@@ -444,69 +491,41 @@ export interface ApiProjectItemProjectItem extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiProjectWeightedPercentAccomplishedProjectWeightedPercentAccomplished
+export interface ApiProjectWithModifiedDataProjectWithModifiedData
   extends Struct.CollectionTypeSchema {
-  collectionName: 'project_weighted_percent_accomplisheds';
+  collectionName: 'project_with_modified_datas';
   info: {
     description: '';
-    displayName: 'Project - Weighted percent accomplished ';
-    pluralName: 'project-weighted-percent-accomplisheds';
-    singularName: 'project-weighted-percent-accomplished';
+    displayName: 'Project with modified data';
+    pluralName: 'project-with-modified-datas';
+    singularName: 'project-with-modified-data';
   };
   options: {
     draftAndPublish: false;
   };
   attributes: {
+    actualCompletionDate: Schema.Attribute.Date;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    dueDate: Schema.Attribute.Date;
+    header_per_project_sections: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::header-per-project-section.header-per-project-section'
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::project-weighted-percent-accomplished.project-weighted-percent-accomplished'
+      'api::project-with-modified-data.project-with-modified-data'
     > &
       Schema.Attribute.Private;
-    project: Schema.Attribute.Relation<'manyToOne', 'api::project.project'>;
+    projectDuration: Schema.Attribute.Integer;
+    projectLocation: Schema.Attribute.String;
+    projectName: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
-    This_date_percentage: Schema.Attribute.Decimal &
-      Schema.Attribute.SetMinMax<
-        {
-          max: 100;
-        },
-        number
-      >;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiProjectWorkAccomplishedProjectWorkAccomplished
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'project_work_accomplisheds';
-  info: {
-    description: '';
-    displayName: 'Project - Work Accomplished ';
-    pluralName: 'project-work-accomplisheds';
-    singularName: 'project-work-accomplished';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    amount: Schema.Attribute.Decimal;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::project-work-accomplished.project-work-accomplished'
-    > &
-      Schema.Attribute.Private;
-    project: Schema.Attribute.Relation<'oneToOne', 'api::project.project'>;
-    publishedAt: Schema.Attribute.DateTime;
-    quantity: Schema.Attribute.Decimal;
+    sourceOfFund: Schema.Attribute.String;
+    startDate: Schema.Attribute.Date;
+    totalProjectAmount: Schema.Attribute.Decimal;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -540,14 +559,6 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
       'api::project.project'
     > &
       Schema.Attribute.Private;
-    project_weighted_percent_accomplisheds: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::project-weighted-percent-accomplished.project-weighted-percent-accomplished'
-    >;
-    project_work_accomplisheds: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::project-work-accomplished.project-work-accomplished'
-    >;
     projectDuration: Schema.Attribute.BigInteger;
     projectLocation: Schema.Attribute.String;
     projectName: Schema.Attribute.String;
@@ -1071,9 +1082,9 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::header-per-project-section.header-per-project-section': ApiHeaderPerProjectSectionHeaderPerProjectSection;
+      'api::project-item-modified.project-item-modified': ApiProjectItemModifiedProjectItemModified;
       'api::project-item.project-item': ApiProjectItemProjectItem;
-      'api::project-weighted-percent-accomplished.project-weighted-percent-accomplished': ApiProjectWeightedPercentAccomplishedProjectWeightedPercentAccomplished;
-      'api::project-work-accomplished.project-work-accomplished': ApiProjectWorkAccomplishedProjectWorkAccomplished;
+      'api::project-with-modified-data.project-with-modified-data': ApiProjectWithModifiedDataProjectWithModifiedData;
       'api::project.project': ApiProjectProject;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

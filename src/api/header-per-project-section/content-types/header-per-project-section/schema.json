@@ -28,6 +28,18 @@
       "relation": "oneToMany",
       "target": "api::project-item.project-item",
       "mappedBy": "header_per_project_section"
+    },
+    "project_with_modified_datum": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::project-with-modified-data.project-with-modified-data",
+      "inversedBy": "header_per_project_sections"
+    },
+    "project_item_modifieds": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::project-item-modified.project-item-modified",
+      "mappedBy": "header_per_project_section"
     }
   }
 }

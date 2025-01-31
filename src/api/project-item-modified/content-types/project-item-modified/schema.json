@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "project_item_modifieds",
+  "info": {
+    "singularName": "project-item-modified",
+    "pluralName": "project-item-modifieds",
+    "displayName": "project_item_modified"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "itemno": {
+      "type": "string"
+    },
+    "subDescription": {
+      "type": "string"
+    },
+    "quantity": {
+      "type": "integer"
+    },
+    "unit": {
+      "type": "string"
+    },
+    "unitCost": {
+      "type": "decimal"
+    },
+    "amount": {
+      "type": "decimal"
+    },
+    "wt_percent": {
+      "type": "decimal"
+    },
+    "header_per_project_section": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::header-per-project-section.header-per-project-section",
+      "inversedBy": "project_item_modifieds"
+    }
+  }
+}

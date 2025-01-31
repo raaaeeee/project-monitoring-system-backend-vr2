@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "projects",
+  "collectionName": "project_with_modified_datas",
   "info": {
-    "singularName": "project",
-    "pluralName": "projects",
-    "displayName": "project",
+    "singularName": "project-with-modified-data",
+    "pluralName": "project-with-modified-datas",
+    "displayName": "Project with modified data",
     "description": ""
   },
   "options": {
@@ -28,7 +28,7 @@
       "type": "decimal"
     },
     "projectDuration": {
-      "type": "biginteger"
+      "type": "integer"
     },
     "sourceOfFund": {
       "type": "string"
@@ -36,12 +36,11 @@
     "actualCompletionDate": {
       "type": "date"
     },
-    "header_per_project_section": {
+    "header_per_project_sections": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "oneToMany",
       "target": "api::header-per-project-section.header-per-project-section",
-      "mappedBy": "project"
+      "mappedBy": "project_with_modified_datum"
     }
-    
   }
 }
