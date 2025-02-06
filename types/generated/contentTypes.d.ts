@@ -397,7 +397,7 @@ export interface ApiHeaderPerProjectSectionHeaderPerProjectSection
     > &
       Schema.Attribute.Private;
     mainDescription: Schema.Attribute.String;
-    project: Schema.Attribute.Relation<'oneToOne', 'api::project.project'>;
+    project: Schema.Attribute.Relation<'manyToOne', 'api::project.project'>;
     project_item_modifieds: Schema.Attribute.Relation<
       'oneToMany',
       'api::project-item-modified.project-item-modified'
@@ -464,7 +464,7 @@ export interface ApiProjectItemProjectItem extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
-    amount: Schema.Attribute.Decimal;
+    amount: Schema.Attribute.Float;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -483,7 +483,7 @@ export interface ApiProjectItemProjectItem extends Struct.CollectionTypeSchema {
     quantity: Schema.Attribute.Decimal;
     subDescription: Schema.Attribute.String;
     unit: Schema.Attribute.String;
-    unitCost: Schema.Attribute.Decimal;
+    unitCost: Schema.Attribute.Float;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -549,8 +549,8 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     dueDate: Schema.Attribute.Date;
-    header_per_project_section: Schema.Attribute.Relation<
-      'oneToOne',
+    header_per_project_sections: Schema.Attribute.Relation<
+      'oneToMany',
       'api::header-per-project-section.header-per-project-section'
     >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;

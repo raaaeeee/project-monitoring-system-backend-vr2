@@ -36,12 +36,11 @@
     "actualCompletionDate": {
       "type": "date"
     },
-    "header_per_project_section": {
+    "header_per_project_sections": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "oneToMany",
       "target": "api::header-per-project-section.header-per-project-section",
       "mappedBy": "project"
     }
-    
   }
 }

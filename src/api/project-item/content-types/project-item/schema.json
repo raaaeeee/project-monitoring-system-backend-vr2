@@ -24,10 +24,10 @@
       "type": "string"
     },
     "unitCost": {
-      "type": "decimal"
+      "type": "float"
     },
     "amount": {
-      "type": "decimal"
+      "type": "float"
     },
     "header_per_project_section": {
       "type": "relation",
