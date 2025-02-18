@@ -41,6 +41,14 @@
       "relation": "oneToMany",
       "target": "api::header-per-project-section.header-per-project-section",
       "mappedBy": "project_with_modified_datum"
+    },
+    "projectImage": {
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

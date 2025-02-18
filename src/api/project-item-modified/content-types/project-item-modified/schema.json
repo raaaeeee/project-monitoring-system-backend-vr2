@@ -4,7 +4,8 @@
   "info": {
     "singularName": "project-item-modified",
     "pluralName": "project-item-modifieds",
-    "displayName": "project_item_modified"
+    "displayName": "project_item_modified",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -18,7 +19,7 @@
       "type": "string"
     },
     "quantity": {
-      "type": "integer"
+      "type": "decimal"
     },
     "unit": {
       "type": "string"
@@ -37,6 +38,18 @@
       "relation": "manyToOne",
       "target": "api::header-per-project-section.header-per-project-section",
       "inversedBy": "project_item_modifieds"
+    },
+    "EnteredQuantity": {
+      "type": "decimal"
+    },
+    "p_wt_percent": {
+      "type": "decimal"
+    },
+    "P_EnteredQuantity": {
+      "type": "decimal"
+    },
+    "totalAmount": {
+      "type": "decimal"
     }
   }
 }

@@ -417,6 +417,7 @@ export interface ApiProjectItemModifiedProjectItemModified
   extends Struct.CollectionTypeSchema {
   collectionName: 'project_item_modifieds';
   info: {
+    description: '';
     displayName: 'project_item_modified';
     pluralName: 'project-item-modifieds';
     singularName: 'project-item-modified';
@@ -429,6 +430,7 @@ export interface ApiProjectItemModifiedProjectItemModified
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    EnteredQuantity: Schema.Attribute.Decimal;
     header_per_project_section: Schema.Attribute.Relation<
       'manyToOne',
       'api::header-per-project-section.header-per-project-section'
@@ -440,9 +442,12 @@ export interface ApiProjectItemModifiedProjectItemModified
       'api::project-item-modified.project-item-modified'
     > &
       Schema.Attribute.Private;
+    P_EnteredQuantity: Schema.Attribute.Decimal;
+    p_wt_percent: Schema.Attribute.Decimal;
     publishedAt: Schema.Attribute.DateTime;
-    quantity: Schema.Attribute.Integer;
+    quantity: Schema.Attribute.Decimal;
     subDescription: Schema.Attribute.String;
+    totalAmount: Schema.Attribute.Decimal;
     unit: Schema.Attribute.String;
     unitCost: Schema.Attribute.Decimal;
     updatedAt: Schema.Attribute.DateTime;
@@ -480,7 +485,7 @@ export interface ApiProjectItemProjectItem extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    quantity: Schema.Attribute.Decimal;
+    quantity: Schema.Attribute.Float;
     subDescription: Schema.Attribute.String;
     unit: Schema.Attribute.String;
     unitCost: Schema.Attribute.Float;
@@ -520,6 +525,7 @@ export interface ApiProjectWithModifiedDataProjectWithModifiedData
     > &
       Schema.Attribute.Private;
     projectDuration: Schema.Attribute.Integer;
+    projectImage: Schema.Attribute.Media<'images' | 'files'>;
     projectLocation: Schema.Attribute.String;
     projectName: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
@@ -560,6 +566,7 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     projectDuration: Schema.Attribute.BigInteger;
+    projectImage: Schema.Attribute.Media<'images' | 'files'>;
     projectLocation: Schema.Attribute.String;
     projectName: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;

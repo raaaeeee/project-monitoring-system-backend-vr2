@@ -18,7 +18,7 @@
       "type": "string"
     },
     "quantity": {
-      "type": "decimal"
+      "type": "float"
     },
     "unit": {
       "type": "string"
