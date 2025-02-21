@@ -407,6 +407,7 @@ export interface ApiHeaderPerProjectSectionHeaderPerProjectSection
       'api::project-with-modified-data.project-with-modified-data'
     >;
     publishedAt: Schema.Attribute.DateTime;
+    remaining: Schema.Attribute.Decimal;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

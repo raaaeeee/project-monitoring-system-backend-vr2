@@ -40,6 +40,9 @@
       "relation": "manyToOne",
       "target": "api::project-with-modified-data.project-with-modified-data",
       "inversedBy": "header_per_project_sections"
+    },
+    "remaining": {
+      "type": "decimal"
     }
   }
 }
