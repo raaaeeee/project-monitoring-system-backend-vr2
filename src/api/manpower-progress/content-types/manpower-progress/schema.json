@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "manpower_progresses",
+  "info": {
+    "singularName": "manpower-progress",
+    "pluralName": "manpower-progresses",
+    "displayName": "manpower_progress",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "manpower_designation": {
+      "type": "string"
+    },
+    "no_of_manpower": {
+      "type": "decimal"
+    },
+    "name_of_personel": {
+      "type": "string"
+    },
+    "work_done": {
+      "type": "text"
+    },
+    "before_image": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "after_image": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "project": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::project.project"
+    }
+  }
+}

@@ -43,6 +43,9 @@
     },
     "remaining": {
       "type": "decimal"
+    },
+    "problem_encountered": {
+      "type": "text"
     }
   }
 }

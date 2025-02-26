@@ -397,6 +397,7 @@ export interface ApiHeaderPerProjectSectionHeaderPerProjectSection
     > &
       Schema.Attribute.Private;
     mainDescription: Schema.Attribute.String;
+    problem_encountered: Schema.Attribute.Text;
     project: Schema.Attribute.Relation<'manyToOne', 'api::project.project'>;
     project_item_modifieds: Schema.Attribute.Relation<
       'oneToMany',
@@ -411,6 +412,42 @@ export interface ApiHeaderPerProjectSectionHeaderPerProjectSection
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiManpowerProgressManpowerProgress
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'manpower_progresses';
+  info: {
+    description: '';
+    displayName: 'manpower_progress';
+    pluralName: 'manpower-progresses';
+    singularName: 'manpower-progress';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    after_image: Schema.Attribute.Media<'images' | 'files', true>;
+    before_image: Schema.Attribute.Media<'images' | 'files', true>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::manpower-progress.manpower-progress'
+    > &
+      Schema.Attribute.Private;
+    manpower_designation: Schema.Attribute.String;
+    name_of_personel: Schema.Attribute.String;
+    no_of_manpower: Schema.Attribute.Decimal;
+    project: Schema.Attribute.Relation<'oneToOne', 'api::project.project'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    work_done: Schema.Attribute.Text;
   };
 }
 
@@ -1090,6 +1127,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::header-per-project-section.header-per-project-section': ApiHeaderPerProjectSectionHeaderPerProjectSection;
+      'api::manpower-progress.manpower-progress': ApiManpowerProgressManpowerProgress;
       'api::project-item-modified.project-item-modified': ApiProjectItemModifiedProjectItemModified;
       'api::project-item.project-item': ApiProjectItemProjectItem;
       'api::project-with-modified-data.project-with-modified-data': ApiProjectWithModifiedDataProjectWithModifiedData;
