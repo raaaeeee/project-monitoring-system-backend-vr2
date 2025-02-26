@@ -485,6 +485,7 @@ export interface ApiProjectItemModifiedProjectItemModified
     publishedAt: Schema.Attribute.DateTime;
     quantity: Schema.Attribute.Decimal;
     subDescription: Schema.Attribute.String;
+    sum_wt_percent: Schema.Attribute.Decimal;
     totalAmount: Schema.Attribute.Decimal;
     unit: Schema.Attribute.String;
     unitCost: Schema.Attribute.Decimal;

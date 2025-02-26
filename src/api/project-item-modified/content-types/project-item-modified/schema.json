@@ -50,6 +50,9 @@
     },
     "totalAmount": {
       "type": "decimal"
+    },
+    "sum_wt_percent": {
+      "type": "decimal"
     }
   }
 }
