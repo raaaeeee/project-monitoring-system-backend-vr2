@@ -464,7 +464,9 @@ export interface ApiProjectItemModifiedProjectItemModified
     draftAndPublish: false;
   };
   attributes: {
+    after_image: Schema.Attribute.Media<'images' | 'files', true>;
     amount: Schema.Attribute.Decimal;
+    before_image: Schema.Attribute.Media<'images' | 'files', true>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -480,6 +482,9 @@ export interface ApiProjectItemModifiedProjectItemModified
       'api::project-item-modified.project-item-modified'
     > &
       Schema.Attribute.Private;
+    manpower_designation: Schema.Attribute.String;
+    name_of_personel: Schema.Attribute.String;
+    no_of_manpower: Schema.Attribute.Decimal;
     P_EnteredQuantity: Schema.Attribute.Decimal;
     p_wt_percent: Schema.Attribute.Decimal;
     publishedAt: Schema.Attribute.DateTime;
@@ -492,6 +497,7 @@ export interface ApiProjectItemModifiedProjectItemModified
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    work_done: Schema.Attribute.Text;
     wt_percent: Schema.Attribute.Decimal;
   };
 }

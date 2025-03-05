@@ -53,6 +53,34 @@
     },
     "sum_wt_percent": {
       "type": "decimal"
+    },
+    "manpower_designation": {
+      "type": "string"
+    },
+    "no_of_manpower": {
+      "type": "decimal"
+    },
+    "name_of_personel": {
+      "type": "string"
+    },
+    "work_done": {
+      "type": "text"
+    },
+    "before_image": {
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "after_image": {
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }
