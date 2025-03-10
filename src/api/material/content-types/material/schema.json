@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "materials",
+  "info": {
+    "singularName": "material",
+    "pluralName": "materials",
+    "displayName": "material",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "material": {
+      "type": "string"
+    },
+    "quantity": {
+      "type": "decimal"
+    },
+    "unit": {
+      "type": "string"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "project_item": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::project-item.project-item",
+      "inversedBy": "materials"
+    },
+    "subtotal": {
+      "type": "decimal"
+    }
+  }
+}

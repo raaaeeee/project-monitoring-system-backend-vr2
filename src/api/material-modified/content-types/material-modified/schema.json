@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "material_modifieds",
+  "info": {
+    "singularName": "material-modified",
+    "pluralName": "material-modifieds",
+    "displayName": "material_modified",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "material": {
+      "type": "string"
+    },
+    "quantity": {
+      "type": "decimal"
+    },
+    "unit": {
+      "type": "string"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "subtotal": {
+      "type": "decimal"
+    },
+    "project_item_modified": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::project-item-modified.project-item-modified",
+      "inversedBy": "material_modifieds"
+    }
+  }
+}

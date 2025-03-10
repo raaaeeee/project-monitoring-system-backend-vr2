@@ -451,6 +451,81 @@ export interface ApiManpowerProgressManpowerProgress
   };
 }
 
+export interface ApiMaterialModifiedMaterialModified
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'material_modifieds';
+  info: {
+    description: '';
+    displayName: 'material_modified';
+    pluralName: 'material-modifieds';
+    singularName: 'material-modified';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::material-modified.material-modified'
+    > &
+      Schema.Attribute.Private;
+    material: Schema.Attribute.String;
+    price: Schema.Attribute.Decimal;
+    project_item_modified: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::project-item-modified.project-item-modified'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    quantity: Schema.Attribute.Decimal;
+    subtotal: Schema.Attribute.Decimal;
+    unit: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiMaterialMaterial extends Struct.CollectionTypeSchema {
+  collectionName: 'materials';
+  info: {
+    description: '';
+    displayName: 'material';
+    pluralName: 'materials';
+    singularName: 'material';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::material.material'
+    > &
+      Schema.Attribute.Private;
+    material: Schema.Attribute.String;
+    price: Schema.Attribute.Decimal;
+    project_item: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::project-item.project-item'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    quantity: Schema.Attribute.Decimal;
+    subtotal: Schema.Attribute.Decimal;
+    unit: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiProjectItemModifiedProjectItemModified
   extends Struct.CollectionTypeSchema {
   collectionName: 'project_item_modifieds';
@@ -483,6 +558,10 @@ export interface ApiProjectItemModifiedProjectItemModified
     > &
       Schema.Attribute.Private;
     manpower_designation: Schema.Attribute.String;
+    material_modifieds: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::material-modified.material-modified'
+    >;
     name_of_personel: Schema.Attribute.String;
     no_of_manpower: Schema.Attribute.Decimal;
     P_EnteredQuantity: Schema.Attribute.Decimal;
@@ -529,6 +608,7 @@ export interface ApiProjectItemProjectItem extends Struct.CollectionTypeSchema {
       'api::project-item.project-item'
     > &
       Schema.Attribute.Private;
+    materials: Schema.Attribute.Relation<'oneToMany', 'api::material.material'>;
     publishedAt: Schema.Attribute.DateTime;
     quantity: Schema.Attribute.Float;
     subDescription: Schema.Attribute.String;
@@ -1135,6 +1215,8 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::header-per-project-section.header-per-project-section': ApiHeaderPerProjectSectionHeaderPerProjectSection;
       'api::manpower-progress.manpower-progress': ApiManpowerProgressManpowerProgress;
+      'api::material-modified.material-modified': ApiMaterialModifiedMaterialModified;
+      'api::material.material': ApiMaterialMaterial;
       'api::project-item-modified.project-item-modified': ApiProjectItemModifiedProjectItemModified;
       'api::project-item.project-item': ApiProjectItemProjectItem;
       'api::project-with-modified-data.project-with-modified-data': ApiProjectWithModifiedDataProjectWithModifiedData;

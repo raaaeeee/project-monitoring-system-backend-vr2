@@ -81,6 +81,12 @@
       ],
       "type": "media",
       "multiple": true
+    },
+    "material_modifieds": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::material-modified.material-modified",
+      "mappedBy": "project_item_modified"
     }
   }
 }
