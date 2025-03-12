@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "project_workers",
+  "info": {
+    "singularName": "project-worker",
+    "pluralName": "project-workers",
+    "displayName": "Project worker",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "laborRequirments": {
+      "type": "string"
+    },
+    "manpower": {
+      "type": "decimal"
+    },
+    "days": {
+      "type": "decimal"
+    },
+    "ratePerDay": {
+      "type": "decimal"
+    },
+    "project": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::project.project",
+      "inversedBy": "project_workers"
+    },
+    "name": {
+      "type": "string"
+    }
+  }
+}

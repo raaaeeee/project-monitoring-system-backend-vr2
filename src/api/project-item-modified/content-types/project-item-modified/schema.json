@@ -87,6 +87,12 @@
       "relation": "oneToMany",
       "target": "api::material-modified.material-modified",
       "mappedBy": "project_item_modified"
+    },
+    "materials": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::material.material",
+      "mappedBy": "project_item_modified"
     }
   }
 }

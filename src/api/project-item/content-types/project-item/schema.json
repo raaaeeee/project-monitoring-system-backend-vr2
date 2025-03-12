@@ -37,12 +37,6 @@
     },
     "wt_percent": {
       "type": "decimal"
-    },
-    "materials": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::material.material",
-      "mappedBy": "project_item"
     }
   }
 }

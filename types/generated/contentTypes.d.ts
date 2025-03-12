@@ -512,9 +512,9 @@ export interface ApiMaterialMaterial extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     material: Schema.Attribute.String;
     price: Schema.Attribute.Decimal;
-    project_item: Schema.Attribute.Relation<
+    project_item_modified: Schema.Attribute.Relation<
       'manyToOne',
-      'api::project-item.project-item'
+      'api::project-item-modified.project-item-modified'
     >;
     publishedAt: Schema.Attribute.DateTime;
     quantity: Schema.Attribute.Decimal;
@@ -562,6 +562,7 @@ export interface ApiProjectItemModifiedProjectItemModified
       'oneToMany',
       'api::material-modified.material-modified'
     >;
+    materials: Schema.Attribute.Relation<'oneToMany', 'api::material.material'>;
     name_of_personel: Schema.Attribute.String;
     no_of_manpower: Schema.Attribute.Decimal;
     P_EnteredQuantity: Schema.Attribute.Decimal;
@@ -608,7 +609,6 @@ export interface ApiProjectItemProjectItem extends Struct.CollectionTypeSchema {
       'api::project-item.project-item'
     > &
       Schema.Attribute.Private;
-    materials: Schema.Attribute.Relation<'oneToMany', 'api::material.material'>;
     publishedAt: Schema.Attribute.DateTime;
     quantity: Schema.Attribute.Float;
     subDescription: Schema.Attribute.String;
@@ -663,6 +663,41 @@ export interface ApiProjectWithModifiedDataProjectWithModifiedData
   };
 }
 
+export interface ApiProjectWorkerProjectWorker
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'project_workers';
+  info: {
+    description: '';
+    displayName: 'Project worker';
+    pluralName: 'project-workers';
+    singularName: 'project-worker';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    days: Schema.Attribute.Decimal;
+    laborRequirments: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::project-worker.project-worker'
+    > &
+      Schema.Attribute.Private;
+    manpower: Schema.Attribute.Decimal;
+    name: Schema.Attribute.String;
+    project: Schema.Attribute.Relation<'manyToOne', 'api::project.project'>;
+    publishedAt: Schema.Attribute.DateTime;
+    ratePerDay: Schema.Attribute.Decimal;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiProjectProject extends Struct.CollectionTypeSchema {
   collectionName: 'projects';
   info: {
@@ -690,6 +725,10 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
       'api::project.project'
     > &
       Schema.Attribute.Private;
+    project_workers: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::project-worker.project-worker'
+    >;
     projectDuration: Schema.Attribute.BigInteger;
     projectImage: Schema.Attribute.Media<'images' | 'files'>;
     projectLocation: Schema.Attribute.String;
@@ -1220,6 +1259,7 @@ declare module '@strapi/strapi' {
       'api::project-item-modified.project-item-modified': ApiProjectItemModifiedProjectItemModified;
       'api::project-item.project-item': ApiProjectItemProjectItem;
       'api::project-with-modified-data.project-with-modified-data': ApiProjectWithModifiedDataProjectWithModifiedData;
+      'api::project-worker.project-worker': ApiProjectWorkerProjectWorker;
       'api::project.project': ApiProjectProject;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

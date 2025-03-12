@@ -24,10 +24,10 @@
     "price": {
       "type": "decimal"
     },
-    "project_item": {
+    "project_item_modified": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::project-item.project-item",
+      "target": "api::project-item-modified.project-item-modified",
       "inversedBy": "materials"
     },
     "subtotal": {
