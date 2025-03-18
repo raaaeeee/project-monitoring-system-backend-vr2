@@ -24,14 +24,20 @@
     "ratePerDay": {
       "type": "decimal"
     },
-    "project": {
+    "project_item_modified": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::project.project",
+      "target": "api::project-item-modified.project-item-modified",
       "inversedBy": "project_workers"
     },
     "name": {
       "type": "string"
+    },
+    "days_worked": {
+      "type": "decimal"
+    },
+    "total_days_worked": {
+      "type": "decimal"
     }
   }
 }

@@ -467,6 +467,7 @@ export interface ApiMaterialModifiedMaterialModified
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    entered_quantity: Schema.Attribute.Decimal;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -474,6 +475,7 @@ export interface ApiMaterialModifiedMaterialModified
     > &
       Schema.Attribute.Private;
     material: Schema.Attribute.String;
+    previous_entered: Schema.Attribute.Decimal;
     price: Schema.Attribute.Decimal;
     project_item_modified: Schema.Attribute.Relation<
       'manyToOne',
@@ -504,6 +506,7 @@ export interface ApiMaterialMaterial extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    entered_quantity: Schema.Attribute.Decimal;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -511,6 +514,7 @@ export interface ApiMaterialMaterial extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     material: Schema.Attribute.String;
+    previous_entered: Schema.Attribute.Decimal;
     price: Schema.Attribute.Decimal;
     project_item_modified: Schema.Attribute.Relation<
       'manyToOne',
@@ -567,8 +571,16 @@ export interface ApiProjectItemModifiedProjectItemModified
     no_of_manpower: Schema.Attribute.Decimal;
     P_EnteredQuantity: Schema.Attribute.Decimal;
     p_wt_percent: Schema.Attribute.Decimal;
+    present_material: Schema.Attribute.Decimal;
+    previous_labor: Schema.Attribute.Decimal;
+    previous_material: Schema.Attribute.Decimal;
+    project_workers: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::project-worker.project-worker'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     quantity: Schema.Attribute.Decimal;
+    remaining_percentage: Schema.Attribute.Decimal;
     subDescription: Schema.Attribute.String;
     sum_wt_percent: Schema.Attribute.Decimal;
     totalAmount: Schema.Attribute.Decimal;
@@ -611,6 +623,7 @@ export interface ApiProjectItemProjectItem extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     quantity: Schema.Attribute.Float;
+    remaining_percentage: Schema.Attribute.Decimal;
     subDescription: Schema.Attribute.String;
     unit: Schema.Attribute.String;
     unitCost: Schema.Attribute.Float;
@@ -680,6 +693,7 @@ export interface ApiProjectWorkerProjectWorker
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     days: Schema.Attribute.Decimal;
+    days_worked: Schema.Attribute.Decimal;
     laborRequirments: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -689,9 +703,13 @@ export interface ApiProjectWorkerProjectWorker
       Schema.Attribute.Private;
     manpower: Schema.Attribute.Decimal;
     name: Schema.Attribute.String;
-    project: Schema.Attribute.Relation<'manyToOne', 'api::project.project'>;
+    project_item_modified: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::project-item-modified.project-item-modified'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     ratePerDay: Schema.Attribute.Decimal;
+    total_days_worked: Schema.Attribute.Decimal;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -725,10 +743,6 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
       'api::project.project'
     > &
       Schema.Attribute.Private;
-    project_workers: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::project-worker.project-worker'
-    >;
     projectDuration: Schema.Attribute.BigInteger;
     projectImage: Schema.Attribute.Media<'images' | 'files'>;
     projectLocation: Schema.Attribute.String;

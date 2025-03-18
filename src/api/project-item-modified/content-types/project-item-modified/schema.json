@@ -67,20 +67,22 @@
       "type": "text"
     },
     "before_image": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     },
     "after_image": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     },
     "material_modifieds": {
       "type": "relation",
@@ -93,6 +95,24 @@
       "relation": "oneToMany",
       "target": "api::material.material",
       "mappedBy": "project_item_modified"
+    },
+    "remaining_percentage": {
+      "type": "decimal"
+    },
+    "previous_material": {
+      "type": "decimal"
+    },
+    "present_material": {
+      "type": "decimal"
+    },
+    "project_workers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::project-worker.project-worker",
+      "mappedBy": "project_item_modified"
+    },
+    "previous_labor": {
+      "type": "decimal"
     }
   }
 }

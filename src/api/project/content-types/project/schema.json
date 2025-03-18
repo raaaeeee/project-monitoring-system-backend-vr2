@@ -49,12 +49,6 @@
       ],
       "type": "media",
       "multiple": false
-    },
-    "project_workers": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::project-worker.project-worker",
-      "mappedBy": "project"
     }
   }
 }

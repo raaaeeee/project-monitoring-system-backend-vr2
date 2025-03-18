@@ -37,6 +37,9 @@
     },
     "wt_percent": {
       "type": "decimal"
+    },
+    "remaining_percentage": {
+      "type": "decimal"
     }
   }
 }

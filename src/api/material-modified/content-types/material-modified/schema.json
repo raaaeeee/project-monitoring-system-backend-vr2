@@ -32,6 +32,12 @@
       "relation": "manyToOne",
       "target": "api::project-item-modified.project-item-modified",
       "inversedBy": "material_modifieds"
+    },
+    "entered_quantity": {
+      "type": "decimal"
+    },
+    "previous_entered": {
+      "type": "decimal"
     }
   }
 }
